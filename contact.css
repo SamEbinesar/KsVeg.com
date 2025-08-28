@@ -1,0 +1,381 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #080303;
+  
+  margin: 0;
+  position: relative;
+  
+}
+
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #2ef81c;
+  padding: 8px 20px; /* smaller height */
+  position: relative;
+  height: 130px;
+}
+
+/* Left: Logo */
+.nav-left .navlogo {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+ box-shadow: 0 4px 12px rgb(0, 0, 0);
+  
+}
+.nav-left {
+     height: -100px;  /* Bigger logo */
+    width: auto;   /* Keep aspect ratio */
+    margin-right: 20px;
+}
+
+/* Center: Title */
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-center h1 {
+  font-size: 2.4rem;
+  color: white;
+  text-shadow: 1px 1px 4px rgb(255, 255, 255);
+}
+.nav-center p {
+    font-size: 1rem;
+    color: black;
+    text-shadow: 1px 1px 4px rgb(255, 255, 255);
+    padding-left: 30px;
+}
+
+/* Right: Menu */
+.nav-right ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-right ul li a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  transform: translateY(-4px) scale(1.05); 
+}
+
+.nav-right ul li a:hover {
+  background: white;
+  color: #04d631;
+  
+  transform: translateY(-4px) scale(1.05); 
+  box-shadow: 0 10px 20px rgb(255, 255, 255);
+  
+}
+
+
+/* Contact Page */
+.contact-main {
+  text-align: center;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.contact-main h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #000000;
+  border: black;
+}
+
+.contact-card {
+  display: inline-block;
+  background: white;
+  padding: 30px;
+  margin: 35px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgb(0, 0, 0);
+  max-width: 400px;
+  text-align: center;
+  
+  box-shadow: 0 4px 12px #000000; /* shadow effect */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.owner-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 3px solid #138808;
+}
+
+.contact-card p {
+  
+  font-size: 16px;
+  margin: 10px 0;
+}
+.contact-card:hover {
+   transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgb(42, 255, 77);
+}
+
+/* Popup styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Popup content */
+.popup-content {
+    position: relative;
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Close button (X) */
+.close-btn {
+    position: absolute;
+    
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: red;
+}
+/* user icon */
+
+.profile-menu {
+  position: relative;
+}
+
+.profile-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: white;
+  object-fit: cover;
+  transform: translateY(-4px) scale(1.05); 
+   box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  border: black;
+
+}
+.profile-icon:hover {
+   transform: translateY(-4px) scale(1.05); 
+    box-shadow: 0 10px 20px rgb(255, 255, 255);
+
+}
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: white;
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  width: 160px;
+}
+
+.dropdown li {
+  padding: 10px;
+}
+
+.dropdown li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+.dropdown li:hover {
+  background: #f5f5f5;
+}
+
+.profile-menu.show .dropdown {
+  display: block;
+}
+
+
+/* Footer */
+footer {
+  background: #011b03;
+  color: #fff;
+  text-align: center;
+  padding: 30px 20px;   /* increase padding top/bottom */
+  min-height: 120px;
+}
+
+
+
+    /* --- Hamburger (hidden on desktop) --- */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:4px;
+  cursor:pointer;
+  padding:8px;
+  border-radius:8px;
+  -webkit-tap-highlight-color: transparent;
+}
+.hamburger .bar{
+  width:26px;
+  height:3px;
+  background:#111;           /* keeps your dark nav link color vibe */
+  border-radius:2px;
+  transition:transform .25s ease, opacity .25s ease;
+}
+
+/* Desktop keeps your current layout */
+.nav-right ul{ display:flex; gap:20px; }
+.mobile-nav {
+  display: none;
+}
+.profileiconmenu {
+  display: none;
+}
+
+/* --- Mobile menu --- */
+@media (max-width: 768px){
+  .navbar{ height:auto; padding:10px 16px; position:relative; }
+  .nav-left .navlogo{ height:64px; width:64px; }
+
+  .nav-center h1{ font-size:1.4rem; text-align:center; }
+  .nav-center p{ font-size:.9rem; padding-left:0; text-align:center; }
+
+  /* Show hamburger */
+  .hamburger{ display:flex; margin-left:auto; transform: translateY(-4px) scale(1.05);  }
+
+  /* Hide menu by default on mobile */
+  .nav-right{
+    display:none;                 /* hidden until active */
+    position:absolute;
+    top:100%; left:0; right:0;
+    background:#26ff26;   
+    
+    color: rgb(58, 253, 58);        /* same navbar green */
+    z-index: 2000;                /* on top of everything */
+    box-shadow: 0 6px 16px rgba(0,0,0,.15);
+  }
+   .profileiconmenu {
+    display: none;
+    position: absolute;
+    top:100%; left:0; right:0;
+    background:#26ff26;   
+    
+    color: rgb(58, 253, 58);        /* same navbar green */
+    z-index: 2000;                /* on top of everything */
+    box-shadow: 0 6px 16px rgba(0,0,0,.15);  
+  }
+  .profileiconmenu.active{ display:block; }
+
+  .profileiconmenu ul{
+   
+    flex-direction:column;
+    align-items:center;
+    gap:0;
+    padding:8px 0;
+    margin:0;
+  }
+  .profileiconmenu ul li{ width:100%; }
+  .profileiconmenu ul li a{
+    display:block;
+    width:100%;
+    padding:12px 20px;
+    text-align:center;
+    transform:none;               /* remove your desktop lift on mobile */
+  }
+  /* Nice X animation for burger */
+  .hamburger.active .bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+  .hamburger.active .bar:nth-child(2){ opacity:0; }
+  .hamburger.active .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+.profileiconmenu ul li a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  transform: translateY(-4px) scale(1.05); 
+}
+
+.profileiconmenu ul li a:hover {
+  background: white;
+  color: #04d631;
+  
+  transform: translateY(-4px) scale(1.05); 
+  box-shadow: 0 10px 20px rgb(255, 255, 255);
+  
+}
+  .contact-card {
+    width: 95%;
+    padding: 10px;
+  
+  }
+   .mobile-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-top: 1px solid #ddd;
+    padding: 8px 0;
+    z-index: 1000;
+  }
+
+  .mobile-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #444;
+    font-size: 12px;
+    text-decoration: none;
+  }
+
+  .mobile-nav .nav-item i {
+    font-size: 20px;
+    margin-bottom: 3px;
+  }
+
+  .mobile-nav .nav-item.active {
+    color: green; /* Highlight active tab */
+  }
+.mobile-nav .nav-item:hover {
+  color:#04d631;
+}
+} 
+

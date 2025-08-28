@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Vegetables</title>
+    <link rel="stylesheet" href="order.css">
+     <link src="script.js" href="script.js">
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar">
+      <!-- Left: Logo -->
+      <div class="nav-left">
+        <img src="LOGOks.png" alt="KS veg logo" class="navlogo">
+      </div>
+
+      <!-- Center: Title -->
+      <div class="nav-center">
+        <h1>  K S Vegetables</h1>
+        <p>Fresh Vegetables Available</p>
+      </div>
+
+      <!-- Right: Links -->
+      <div class="nav-right">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="order.html">To Order</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a id="loginNav" href="#" onclick="openLogin()">Login</a></li>
+          <li id="loginSuccessNav" style="display:none;">✅Loggedin| </li>
+            <li id="profileMenu" class="profile-menu" style="display:none;">
+              <img src="https://icons.veryicon.com/png/o/education-technology/learning-to-bully-the-king/user-name-15.png" alt="User" class="profile-icon" onclick="usericon()">
+                <ul class="dropdown"  id="DD" style="display: none;">
+                  <li><a href="profile.html">My Profile</a></li>
+                   <li><a href="myorders.html">My Orders</a></li>
+                
+                    <li><a href="#" onclick="logout()">Logout</a></li>
+      </ul>
+    </li>
+
+        </ul>
+      </div>
+      
+            <div class="hamburger" onclick="toggleMenu()">
+                <img src="https://icons.veryicon.com/png/o/education-technology/learning-to-bully-the-king/user-name-15.png" alt="User" class="profile-icon" onclick="usericon()">
+            </div>
+             <div class="profileiconmenu">
+      <ul>
+     <li> <a href="profile.html">My Profile</a></li>
+     <li><a href="myorders.html">My Orders</a></li>
+    <li>
+      <a href="#" id="loginham" onclick="openLogin()" style="display: none;">Login</a>
+      <a href="#" id="loginSuccessham" onclick="logout()" style="display: none;">Logout</a>
+     </li>
+     </ul>
+    </div>
+    </nav>
+    
+         <!-- Sticky Bottom Nav (only for mobile) -->
+<nav class="mobile-nav">
+  <a href="index.html" class="nav-item">
+    <i class="fas fa-home"></i>
+    <span>Home</span>
+  </a>
+  <a href="order.html" class="nav-item">
+    <i class="fas fa-shopping-cart"></i>
+    <span>Order</span>
+  </a>
+  <a href="contact.html" class="nav-item">
+    <i class="fas fa-phone"></i>
+    <span>Contact</span>
+  </a>
+  <a href="#" onclick="openLogin()" id="loginicon" class="nav-item" style="display: none;">
+    <i class="fas fa-user"></i>
+    <span>Login</span>
+  </a>
+  <a href="#" onclick="logout()" id="loginSuccessicon" class="nav-item" style="display: none;">
+    <i class="fas fa-user"></i>
+    <span>Logout</span>
+  </a>
+</nav>
+
+  </header>
+  
+<!-- FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script src="script.js"></script>
+
+  <script>
+  
+function closePopup() {
+     document.getElementById("loginPopup").style.display = "none";
+}
+
+
+function updateLoginStatus() {
+  // hide login button
+  document.getElementById("loginNav").style.display = "none";  
+
+  // show success tick icon
+  document.getElementById("loginSuccessNav").style.display = "block";  
+}
+
+
+// Call this function after successful login
+function setLogin() {
+  localStorage.setItem("isLoggedIn", "true");
+  showLoginStatus();
+}
+
+// Call this function when logging out
+function logout() {
+  localStorage.removeItem("isLoggedIn");
+  showLoginStatus();
+  window.location.href="index.html";
+}
+
+// Function to update nav UI
+function showLoginStatus() {
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const loginNav = document.getElementById("loginNav");
+  const loginSuccessNav = document.getElementById("loginSuccessNav");
+  const loginSuccessicon = document.getElementById("loginSuccessicon");
+  const loginicon = document.getElementById("loginicon");
+  const loginham = document.getElementById("loginham");
+  const loginSuccessham = document.getElementById("loginSuccessham");
+  if (isLoggedIn) {
+    loginNav.style.display = "none";
+    loginSuccessNav.style.display = "inline-block";
+    loginSuccessicon.style.display="flex";
+    loginSuccessham.style.display="block";
+  } else {
+    loginNav.style.display = "inline-block";
+    loginSuccessNav.style.display = "none";
+    loginicon.style.display="flex";
+    loginham.style.display="block";
+  }
+}
+ function usericon() {
+  let dropdown = document.getElementById("DD");
+  if (dropdown.style.display === "block") {
+    dropdown.style.display = "none";  // close if already open
+  } else {
+    dropdown.style.display = "block"; // open if closed
+  }
+}
+// Run on every page load
+document.addEventListener("DOMContentLoaded", showLoginStatus);
+
+</script>
+  
+<main>
+    <div class="search-container">
+  <input type="text" id="searchBar" onkeyup="searchVegetable()" placeholder="Search for vegetables...">
+</div>
+<div class="view-bill">
+  <button class="view-bill-btn" onclick="viewBill()">View Bill</button>
+</div>
+     <section class="products">
+         <article> <img src="https://images.unsplash.com/photo-1607305387299-a3d9611cd469?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tomato"> 
+            <h3>Tomato Rs.50/Kg</h3> 
+            <p>Calories: 18 kcal</p> 
+            <p>Main Vitamin: Vitamin C</p> 
+              <label for="tomatoQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="tomatoQty" 
+    name="tomatoQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+             <button onclick="addToBill('tomatoQty','Tomato',50)">Add to Bill</button>
+        </article>
+     <article> 
+        <img src="https://images.unsplash.com/photo-1445282768818-728615cc910a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Y2Fycm90fGVufDB8fDB8fHww" alt="Carrot"> 
+        <h3>Carrot Rs.80/Kg</h3> 
+        <p>Calories: 41 kcal</p>
+         <p>Main Vitamin: Vitamin A</p>
+         <label for="carrotQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="carrotQty" 
+    name="carrotQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('carrotQty','Carrot',80)">Add to Bill</button>
+         </article> 
+         <article> <img src="https://images.unsplash.com/photo-1683355739329-cea18ba93f02?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Onion">
+                <h3>Sambar Onion Rs.50/Kg</h3>
+                 <p>Calories: 72 kcal</p> 
+                 <p>Main Vitamin: Vitamin C</p>
+                 <label for="sambaronionOty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="sambaronionOty" 
+    name="sambaronionOty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('sambaronionOty','SambarOnion',50)">Add to Bill</button>
+            </article>
+          <article>
+            <img src="https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="MBallary">
+            <h3>M.Ballary Rs.20/Kg</h3>
+            <p>Calories: 40 kcal</p>
+            <p>Main Vitamin: Vitamin B6</p>
+            <label for="mballaryQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="mballaryQty" 
+    name="mballaryQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+          <button onclick="addToBill('mballaryQty','MBallaray',20)">Add to Bill</button>
+          </article>
+          <article>
+            <img src="https://plus.unsplash.com/premium_photo-1723708958105-09e29205e551?q=80&w=844&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="BBallary">
+            <h3>B.Ballary Rs.35/Kg</h3>
+            <p>Calories: 38 kcal</p>
+            <p>Main Vitamin: Vitamin B6</p>
+            <label for="bballaryQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="bballaryQty" 
+    name="bballaryQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+<button onclick="addToBill('bballaryQty','Bballaray',35)">Add to Bill</button>
+          </article>
+        <article> 
+            <img src="https://images.unsplash.com/photo-1615484478243-c94e896edbae?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Ginger"> 
+            <h3>Ginger Rs.100/Kg</h3>
+             <p>Calories: 80 kcal</p> 
+             <p>Main Vitamin: Vitamin C</p>
+             <label for="gingerQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="gingerQty" 
+    name="gingerQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('gingerQty','Ginger',100)">Add to Bill</button>
+             </article> 
+            <article>
+              <img src="https://images.unsplash.com/reserve/E6Ai8EoSQp2unXHEd1GA_GarlicHarvest.jpg?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="garlic">
+              <h3>Garlic Rs.120/Kg</h3>
+              <p>Calories: 149 kcal</p>
+              <p>Main Vitamin: Vitamin B6</p>
+              <label for="garlicQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="garlicQty" 
+    name="garlicQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('garlicQty','Garlic',120)">Add to Bill</button>
+            </article>
+            <article> <img src="https://images.unsplash.com/photo-1668120082831-e83f387e3461?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cabbage"> 
+                <h3>Cabbage Rs.30/kg</h3> 
+                <p>Calories: 25 kcal</p> 
+                <p>Main Vitamin: Vitamin K</p> 
+                <label for="cabbageQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="cabbageQty" 
+    name="cabbageQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('cabbageQty','Cabbage',30)">Add to Bill</button>
+            </article>
+         <article> 
+            <img src="https://plus.unsplash.com/premium_photo-1675365779531-031dfdcdf947?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Potato"> 
+            <h3>Potato Rs.40/Kg</h3>
+             <p>Calories: 77 kcal</p>
+              <p>Maiin Vitamin: Vitamin C</p> 
+              <label for="potatoQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="potatoQty" 
+    name="potatoQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('potatoQty','Potato',40)">Add to Bill</button>
+            </article>
+             
+             <article> <img src="https://images.unsplash.com/photo-1668080319873-de40beceae80?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Raddish">
+                     <h3>Raddish Rs.40/Kg</h3>
+                      <p>Calories: 16 kcal</p> 
+                      <p>Main Vitamin: Vitamin C</p> 
+                      <label for="raddishQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="raddishQty" 
+    name="raddishQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('raddishQty','Raddish',40)">Add to Bill</button>
+                    </article> 
+
+            <article> 
+                <img src="https://plus.unsplash.com/premium_photo-1666270423836-864dfa7071e5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnJpbmphbHxlbnwwfHwwfHx8MA%3D%3D" alt="Brinjal">
+                         <h3>Brinjal Rs.50/Kg</h3> 
+                         <p>Calories: 25 kcal</p>
+                          <p>Main Vitamin: Vitamin B6</p> 
+                          <label for="brinjalQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="brinjalQty" 
+    name="brinjalQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('brinjalQty','Brinjal',50)">Add to Bill</button>
+            </article> 
+            <article>
+              <img src="https://images.unsplash.com/photo-1739664237734-e6e9b91bfd0d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Valakkai">
+              <h3>Valakkai Rs.30/Kg</h3>
+              <p>Calories: 89 kcal</p>
+              <p>Main Vitamin: Vitamin B6</p>
+              <label for="valakkaiQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="valakkaiQty" 
+    name="valakkaiQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('valakkaiQty','Valakkai',30)">Add to Bill</button>
+            </article>
+            <article>
+              <img src="https://plus.unsplash.com/premium_photo-1725384940646-ef6aa8c2a091?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Beans">
+              <h3>Beans Rs.60/Kg</h3>
+              <p>Calories: 31 kcal</p>
+              <p>Main Vitamin: Vitamin K</p>
+              <label for="beansQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="beansQty" 
+    name="beansQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('beansQty','Beans',60)">Add to Bill</button>
+            </article>
+          <article>
+            <img src="https://images.unsplash.com/photo-1739903760973-4731a8e79a03?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pavakkai">
+            <h3>Pavakkai Rs.80/Kg</h3>
+            <p>Calories: 34 kcal</p>
+            <p>Main Vitamin: Vitamin A</p>
+            <label for="pavakkaiQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="pavakkaiQty" 
+    name="pavakkaiQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('pavakkaiQty','Pavakkai',80)">Add to Bill</button>
+          </article>
+          <article>
+            <img src="https://images.unsplash.com/photo-1629358821360-500f89a5a907?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mango">
+            <h3>Mango Rs.50/Kg</h3>
+            <p>Calories: 60 kcal</p>
+            <p>Main Vitamin: Vitamin C</p>
+            <label for="mangoQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="mangoQty" 
+    name="mangoQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('mangoQty','Mango',50)">Add to Bill</button>
+          </article>
+          <article>
+            <img src="https://media.istockphoto.com/id/1273690321/photo/two-snake-gourd-on-white-backgrounds-top-view.webp?a=1&b=1&s=612x612&w=0&k=20&c=50tJcEMTppLUP-893fnLJnddtafl4t_hm14fx3j-pec=" alt="Pudalangai">
+            <h3>Pudalangai Rs.40/Kg</h3>
+            <p>Calories: 18 kcal</p>
+            <p>Main Vitamin: Vitamin C</p>
+            <label for="pudalangaiQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="pudalangaiQty" 
+    name="pudalangaiQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('pudalangaiQty','Pudalangai',40)">Add to Bill</button>
+          </article>
+        <article>
+          <img src="https://media.istockphoto.com/id/1194258667/photo/bottle-gourd-for-sale-in-market.webp?a=1&b=1&s=612x612&w=0&k=20&c=fZHiUBNstERZrULCkI9b7cu0hhTKC4iKhYsQ8T72Fvk=" alt="Sorakkai">
+          <h3>Sorakkai Rs.40/Kg</h3>
+          <p>Calories: 14 kcal</p>
+          <p>Main Vitamin: Vitamin B Complex</p>
+          <label for="sorakkaiQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="sorakkaiQty" 
+    name="sorakkaiQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+           <button onclick="addToBill('sorakkaiQty','Sorakkai',40)">Add to Bill</button>
+        </article>
+        <article>
+          <img src="https://media.istockphoto.com/id/137350104/photo/green-peppers.webp?a=1&b=1&s=612x612&w=0&k=20&c=7u2DZpZoSZIWkSDyvAbxkvNU09BrvPdQCPzM4LcsxvU=" alt="Capsicum">
+          <h3>Capsicum Rs.80/Kg</h3>
+          <p>Calories: 20 kcal</p>
+          <p>Main Vitamin: Vitamin C</p>
+
+            <label for="capsicumQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="capsicumQty" 
+    name="capsicumQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('capsicumQty','Capsicum',80)">Add to Bill</button>
+
+        </article>
+        <article>
+          <img src="https://media.istockphoto.com/id/493446908/photo/fresh-sliced-beetroot-on-wooden-surface.webp?a=1&b=1&s=612x612&w=0&k=20&c=JAPVe31lBJa60G7D0EZoylcaVtp4wGIclGKoWHKbVDs=" alt="BeetRoot">
+          <h3>BeetRoot Rs.50/Kg</h3>
+          <p>Calories: 43 kcal</p>
+          <p>Main Vitamin: Vitamin B9</p>
+          <label for="beetrootQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="beetrootQty" 
+    name="beetrootQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('beetrootQty','BeetRoot',50)">Add to Bill</button>
+        </article>
+        <article>
+          <img src="https://media.istockphoto.com/id/1045761832/photo/fresh-green-cucumber-salad.webp?a=1&b=1&s=612x612&w=0&k=20&c=GQHbGP0Lhv3ZduUGtfvDBemBjIk_WNlvli-La6AiwyQ=" alt="Cucumber">
+          <h3>Cucumber Rs.50/Kg</h3>
+          <p>Calories: 16 kcal</p>
+          <p>Main Vitamin: Vitamin K</p>
+          <label for="cucumberQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="cucumberQty" 
+    name="cucumberQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('cucumberQty','Cucumber',50)">Add to Bill</button>
+        </article>
+        <article>
+          <img src="https://images.unsplash.com/photo-1576763595295-c0371a32af78?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z3JlZW4lMjBjaGlsbGl8ZW58MHx8MHx8fDA%3D" alt="Green Chilli">
+          <h3>Green Chilli Rs.60/Kg</h3>
+          <p>Calories: 40 kcal</p>
+          <p>Main Vitamin: Vitamin C</p>
+          <label for="chilliQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="chilliQty" 
+    name="chilliQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('chilliQty','Chilli',60)">Add to Bill</button>
+        </article>
+        <article>
+          <img src="https://media.istockphoto.com/id/482451066/photo/pile-of-chayote-fruits-for-sale.webp?a=1&b=1&s=612x612&w=0&k=20&c=HJBJo6oB0gRSUiMwQKUGnIJhH3RwCg9lWWhUaUBKXyY=" alt="Chow Chow">
+          <h3>Chow Chow Rs.40/Kg</h3>
+          <p>Calories: 19 kcal</p>
+          <p>Main Vitamin: Vitamin C</p>
+          <label for="chowQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="chowQty" 
+    name="chowQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('chowQty','Chow',40)">Add to Bill</button>
+        </article>
+        <article>
+          <img src="https://media.istockphoto.com/id/1184565308/photo/heap-of-fresh-jack-bean-or-canavalia-gladiata-on-white-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=IjfGJa4l5QVfRSpAvD22nXRPBFd4LKoYyZ-y54PIouE=" alt="Avarai">
+          <h3>Avarai Rs.80/Kg</h3>
+           <p>Calories: 47 kcal</p>
+          <p>Main Vitamin: Vitamin B1</p>
+          <label for="avaraiQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="avaraiQty" 
+    name="avaraiQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+           <button onclick="addToBill('avaraiQty','Avarai',80)">Add to Bill</button>
+        </article>
+
+        <article>
+          <img src="https://images.unsplash.com/photo-1425543103986-22abb7d7e8d2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8b2tyYXxlbnwwfHwwfHx8MA%3D%3D" alt="LadysFinger">
+          <h3>LadysFinger Rs.50/Kg</h3>
+          <p>Calories: 33 kcal</p>
+          <p>Main Vitamin: Vitamin C</p>
+          <label for="ladysfingerQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="ladysfingerQty" 
+    name="ladysfingerQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('ladysfingerQty','LadysFinger',50)">Add to Bill</button>
+        </article>
+      <article>
+        <img src="https://media.istockphoto.com/id/1000651956/photo/cluster-beans-close-up.webp?a=1&b=1&s=612x612&w=0&k=20&c=jtANax2LgVKTH0Vj5KR5Ze1Cn6t4mOsv4fwlHVyJf24=" alt="Kothavarai">
+        <h3>Kothavarai Rs.50/Kg</h3>
+           <p>Calories: 43 kcal</p>
+          <p>Main Vitamin: Vitamin C</p>
+          <label for="kothavaraiQty">Enter Quantity (in kg):</label>
+  <input 
+    type="number" 
+    id="kothavaraiQty" 
+    name="kothavaraiQty" 
+    step="0.25" 
+    min="0.0" 
+    max="100" 
+    placeholder="e.g., 1.25"
+  >
+            <button onclick="addToBill('kothavaraiQty','Kothavarai',50)">Add to Bill</button>
+          
+      </article>
+</section>
+ </main>
+  <footer>
+    <p>&copy; 2025 KS Veg. All rights reserved.</p>
+  </footer>
+
+ 
+<div id="loginPopup" class="popup">
+    <div class="popup-content">
+         <span class="close-btn" onclick="closeLogin()">&times;</span>
+      <iframe id="loginFrame" src="" width="100%" height="400px" style="border:none;"></iframe>
+    </div>
+  </div>
+</body>
+</html>

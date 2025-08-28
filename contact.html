@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>K S Vegetables - Contact</title>
+  <link rel="stylesheet" href="contact.css"/>
+</head>
+<body>
+<body class="home-page">
+  <header>
+    <nav class="navbar">
+      <!-- Left: Logo -->
+      <div class="nav-left">
+        <img src="LOGOks.png" alt="KS veg logo" class="navlogo">
+      </div>
+
+      <!-- Center: Title -->
+      <div class="nav-center">
+        <h1>  K S Vegetables</h1>
+        <p>Fresh Vegetables Available</p>
+      </div>
+       
+      <!-- Right: Links -->
+      <div class="nav-right">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="order.html">To Order</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a id="loginNav" href="#" onclick="openLogin()">Login</a></li>
+          <li id="loginSuccessNav" style="display:none;">✅Loggedin| </li>
+            <li id="profileMenu" class="profile-menu" style="display:none;">
+              <img src="https://icons.veryicon.com/png/o/education-technology/learning-to-bully-the-king/user-name-15.png" alt="User" class="profile-icon" onclick="usericon()">
+                <ul class="dropdown"  id="DD" style="display: none;">
+                  <li><a href="profile.html">My Profile</a></li>
+                   <li><a href="myorders.html">My Orders</a></li>
+                    
+                    <li><a href="#" onclick="logout()">Logout</a></li>
+      </ul>
+    </li>
+
+        </ul>
+      </div>
+      
+            <div class="hamburger" onclick="toggleMenu()">
+                <img src="https://icons.veryicon.com/png/o/education-technology/learning-to-bully-the-king/user-name-15.png" alt="User" class="profile-icon" onclick="usericon()">
+            </div>
+            <div class="profileiconmenu">
+      <ul>
+     <li> <a href="profile.html">My Profile</a></li>
+     <li><a href="myorders.html">My Orders</a></li>
+     <li>
+      <a href="#" id="loginham" onclick="openLogin()" style="display: none;">Login</a>
+      <a href="#" id="loginSuccessham" onclick="logout()" style="display: none;">Logout</a>
+     </li>
+     </ul>
+    </div>
+    </nav>
+    
+         <!-- Sticky Bottom Nav (only for mobile) -->
+<nav class="mobile-nav">
+  <a href="index.html" class="nav-item">
+    <i class="fas fa-home"></i>
+    <span>Home</span>
+  </a>
+  <a href="order.html" class="nav-item">
+    <i class="fas fa-shopping-cart"></i>
+    <span>Order</span>
+  </a>
+  <a href="contact.html" class="nav-item">
+    <i class="fas fa-phone"></i>
+    <span>Contact</span>
+  </a>
+  <a href="#" onclick="openLogin()" id="loginicon" class="nav-item" style="display: none;">
+    <i class="fas fa-user"></i>
+    <span>Login</span>
+  </a>
+  <a href="#" onclick="logout()" id="loginSuccessicon" class="nav-item" style="display: none;">
+    <i class="fas fa-user"></i>
+    <span>Logout</span>
+  </a>
+</nav>
+
+  </header>
+  
+<!-- FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script src="script.js"></script>
+  <script>
+
+// Call this function after successful login
+function setLogin() {
+  localStorage.setItem("isLoggedIn", "true");
+  showLoginStatus();
+}
+
+// Call this function when logging out
+function logout() {
+  localStorage.removeItem("isLoggedIn");
+  showLoginStatus();
+  window.location.href="index.html";
+}
+// Function to update nav UI
+function showLoginStatus() {
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const loginNav = document.getElementById("loginNav");
+  const loginSuccessNav = document.getElementById("loginSuccessNav");
+  const loginSuccessicon = document.getElementById("loginSuccessicon");
+  const loginicon = document.getElementById("loginicon");
+    const loginham = document.getElementById("loginham");
+  const loginSuccessham = document.getElementById("loginSuccessham");
+
+  if (isLoggedIn) {
+    loginNav.style.display = "none";
+    loginSuccessNav.style.display = "inline-block";
+    loginSuccessicon.style.display="flex";
+    loginSuccessham.style.display="block";
+  } else {
+    loginNav.style.display = "inline-block";
+    loginSuccessNav.style.display = "none";
+    loginicon.style.display="flex";
+    loginham.style.display="block";
+  }
+}
+
+ function usericon() {
+  let dropdown = document.getElementById("DD");
+  if (dropdown.style.display === "block") {
+    dropdown.style.display = "none";  // close if already open
+  } else {
+    dropdown.style.display = "block"; // open if closed
+  }
+}
+
+// Run on every page load
+document.addEventListener("DOMContentLoaded", showLoginStatus);
+
+
+
+  </script>
+  <main class="contact-main">
+    <h2>Contact Us</h2>
+    <div class="contact-card">
+      <img src="MariappaChithappa.png" alt="Shop Owner" class="owner-img">
+      <h1>K.Sellamariappan</h1>
+      
+     
+      <p><strong>Mobile:</strong> +91 9655723110</p><br>
+      <h3>K S Vegetables</h3>
+      <h4>151C,Main Road, Kollidam, Sirkali Tk, Mayiladuthurai dist, Tamil Nadu.</h4>
+    </div>
+
+   
+    <div class="contact-card">
+      <img src="perumalChithappa.jpg" alt="Shop Owner" class="owner-img">
+      <h1>K.Selva Perumal</h1>
+      
+     
+      <p><strong>Mobile:</strong> +91 9994979754</p><br>
+      <h3>K S Vegetables</h3>
+      <h4>151C,Main Road, Kollidam, Sirkali Tk, Mayiladuthurai dist, Tamil Nadu.</h4>
+    </div>
+  
+  </main>
+<div id="loginPopup" class="popup">
+    <div class="popup-content">
+         <span class="close-btn" onclick="closeLogin()">&times;</span>
+      <iframe id="loginFrame" src="" width="100%" height="400px" style="border:none;"></iframe>
+    </div>
+  </div>
+
+
+  <footer>
+    <p>&copy; 2025 KS Veg. All rights reserved.</p>
+    
+  </footer>
+</body>
+</html>

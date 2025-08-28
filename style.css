@@ -1,0 +1,449 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body setup */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  margin: 0;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url('https://plus.unsplash.com/premium_photo-1675798983878-604c09f6d154?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  filter: blur(2px);
+  z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #3bff29;
+  padding: 8px 20px; /* smaller height */
+  position: relative;
+  height: 130px;
+}
+
+/* Left: Logo */
+.nav-left .navlogo {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+ box-shadow: 0 4px 12px rgb(0, 0, 0);
+  
+}
+.nav-left {
+     height: -100px;  /* Bigger logo */
+    width: auto;   /* Keep aspect ratio */
+    margin-right: 20px;
+}
+
+/* Center: Title */
+.nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-center h1 {
+  font-size: 2.4rem;
+  color: white;
+  text-shadow: 1px 1px 4px rgb(255, 255, 255);
+}
+.nav-center p {
+    font-size: 1rem;
+    color: black;
+    text-shadow: 1px 1px 4px rgb(255, 255, 255);
+    padding-left: 30px;
+}
+/* Right: Menu */
+.nav-right ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-right ul li a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  transform: translateY(-4px) scale(1.05); 
+}
+
+.nav-right ul li a:hover {
+  background: white;
+  color: #04d631;
+  
+  transform: translateY(-4px) scale(1.05); 
+  box-shadow: 0 10px 20px rgb(255, 255, 255);
+  
+}
+
+/* Main */
+.home-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;  /* centers vertically */
+    text-align: center;
+}
+
+.center-text {
+    font-size: 48px;              /* bigger font */
+    font-weight: bold;
+    color: #44bd20;               /* green */
+    text-shadow: 0px 0px 10px white, 0px 0px 20px white;
+    animation: fadeInOut 3s infinite;
+}
+
+.sub-text {
+    font-size: 20px;
+    margin-top: 10px;
+    font-family: bold;
+    color: #ffffff;
+    white-space: nowrap;       /* keep text in one line */
+    overflow: hidden;          /* hide extra text until animated */
+    border-right: 2px solid #444; /* typing cursor */
+    width: 0;                  /* start with hidden text */
+    animation: typing 5s steps(50, end) forwards, blink 0.7s step-end infinite;
+    text-shadow: 0px 0px 0px 10px white;
+    animation-delay: 1s;
+}
+
+/* Fade in and fade out animation */
+@keyframes fadeInOut {
+    0%   { opacity: 0; }
+    50%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to   { width: 100%; }
+}
+
+/* Cursor blink */
+@keyframes blink {
+    from, to { border-color: transparent; }
+    50%      { border-color: #444; }
+}
+/* Footer */
+footer {
+  background: #011b03;
+  color: #fff;
+  text-align: center;
+  padding: 30px 20px;   /* increase padding top/bottom */
+  min-height: 120px;
+}
+.order-now {
+
+  bottom: -70px;
+  padding-right: -100px;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+
+}
+.order-now{
+  transform: translateX(0px); /* moves div 100px to the right */
+  transform: translateY(25px);
+}
+.order-now a {
+  display: inline-block;
+  background: #28a745;
+  color: white;
+  font-weight: bold;
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+}
+
+.order-now a:hover {
+  background: #218838;
+    transform: translateY(-4px) scale(1.05); 
+    box-shadow: 0 10px 20px rgb(255, 255, 255);
+
+
+}
+
+/* Popup styles */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Popup content */
+.popup-content {
+    position: relative;
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Close button (X) */
+.close-btn {
+    position: absolute;
+    
+    top: 10px;
+    right: 15px;
+    font-size: 35px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: red;
+}
+
+/* ---- user icon ----*/
+
+.profile-menu {
+  position: relative;
+}
+
+.profile-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: white;
+  object-fit: cover;
+  transform: translateY(-4px) scale(1.05); 
+   box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  border: black;
+
+}
+.profile-icon:hover {
+   transform: translateY(-4px) scale(1.05); 
+    box-shadow: 0 10px 20px rgb(255, 255, 255);
+
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  
+
+  background-color: #ffffff;
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  width: 160px;
+}
+
+.dropdown li {
+  padding: 10px;
+  
+}
+
+.dropdown li a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+.dropdown li:hover {
+  background: #44ff2b;
+}
+
+.profile-menu.show .dropdown {
+  display: block;
+}
+
+
+    /* --- Hamburger (hidden on desktop) --- */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:4px;
+  cursor:pointer;
+  padding:8px;
+  border-radius:8px;
+  -webkit-tap-highlight-color: transparent;
+}
+.hamburger .bar{
+  width:26px;
+  height:3px;
+  background:#111;           /* keeps your dark nav link color vibe */
+  border-radius:2px;
+  transition:transform .25s ease, opacity .25s ease;
+}
+
+/* Desktop keeps your current layout */
+.nav-right ul{ display:flex; gap:20px; }
+
+
+
+.mobile-nav {
+  display: none;
+}
+.profileiconmenu {
+  display: none;
+}
+/* --- Mobile menu --- */
+@media (max-width: 768px){
+  .navbar{ height:auto; padding:10px 16px; position:relative; }
+  .nav-left .navlogo{ height:64px; width:64px; }
+
+  .nav-center h1{ font-size:1.4rem; text-align:center; }
+  .nav-center p{ font-size:.9rem; padding-left:0; text-align:center; }
+
+  /* Show hamburger */
+  .hamburger{ display:flex; margin-left:auto; transform: translateY(-4px) scale(1.05);  }
+  
+  /* Hide menu by default on mobile */
+  .nav-right{
+    display:none;                 /* hidden until active */
+    position:absolute;
+    top:100%; left:0; right:0;
+    background:#26ff26;   
+    
+    color: rgb(58, 253, 58);        /* same navbar green */
+    z-index: 2000;                /* on top of everything */
+    box-shadow: 0 6px 16px rgba(0,0,0,.15);
+  }
+  .profileiconmenu {
+    display: none;
+    position: absolute;
+    top:100%; left:0; right:0;
+    background:#26ff26;   
+    
+    color: rgb(58, 253, 58);        /* same navbar green */
+    z-index: 2000;                /* on top of everything */
+    box-shadow: 0 6px 16px rgba(0,0,0,.15);  
+  }
+  .profileiconmenu.active{ display:block; }
+
+  .profileiconmenu ul{
+   
+    flex-direction:column;
+    align-items:center;
+    gap:0;
+    padding:8px 0;
+    margin:0;
+  }
+  .profileiconmenu ul li{ width:100%; }
+  .profileiconmenu ul li a{
+    display:block;
+    width:100%;
+    padding:12px 20px;
+    text-align:center;
+    transform:none;               /* remove your desktop lift on mobile */
+  }
+  /* Nice X animation for burger */
+  .hamburger.active .bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+  .hamburger.active .bar:nth-child(2){ opacity:0; }
+  .hamburger.active .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+.profileiconmenu ul li a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  transform: translateY(-4px) scale(1.05); 
+}
+
+.profileiconmenu ul li a:hover {
+  background: white;
+  color: #04d631;
+  
+  transform: translateY(-4px) scale(1.05); 
+  box-shadow: 0 10px 20px rgb(255, 255, 255);
+  
+}
+  
+/* Login Popup */
+#loginPopup {
+  position: fixed;  /* stays on top of the page */
+  top: 50%;
+  left: 50%;
+  
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  z-index: 2000; /* must be higher than navbar */
+  display: none;  /* hidden by default */
+}
+
+.sub-text {
+  font-size: small;
+}
+
+ .mobile-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-top: 1px solid #ddd;
+    padding: 8px 0;
+    z-index: 1000;
+  }
+
+  .mobile-nav .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #444;
+    font-size: 12px;
+    text-decoration: none;
+  }
+
+  .mobile-nav .nav-item i {
+    font-size: 20px;
+    margin-bottom: 3px;
+  }
+
+  .mobile-nav .nav-item.active {
+    color: green; /* Highlight active tab */
+  }
+  .mobile-nav .nav-item:hover {
+    color:#04d631;
+
+  }
+  
+.footer {
+  height: 2000px;
+}
+
+}
