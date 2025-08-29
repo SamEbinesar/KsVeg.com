@@ -110,16 +110,25 @@ function viewBill() {
                     text-align: right;
                     color: #2c3e50;
                 }
-                @media (max-width: 600px) {
-                      #billWindow {
-                             width: 95%;           /* Almost full width */
-                             height: auto;         /* Auto adjust height */
-                              max-height: 90vh;     /* Prevent overflow */
-                              overflow-y: auto;     /* Scroll if too tall */
+         
+                @media (max-width: 768px) {
+                      html, body {
+                               
+                               height: 100%;   
+                              overflow-y: hidden;     /* Scroll if too tall */
                               padding: 15px;
+                              max-width: 100%;
                         }
+                        .bill-container {
+                        overflow-y: hidden;
+                        height: 80%;
+                        width: auto;
+                        }
+                        .bill-container button {
+                         width: auto;            /* full width buttons in mobile */
+                          margin: 5px 0;
+                             }
 }
-
             </style>
         </head>
         <body>
@@ -223,14 +232,25 @@ function vieworderbill() {
                     text-align: right;
                     color: #2c3e50;
                 }
-                @media (max-width: 600px) {
-                      #billWindow {
-                             width: 95%;           /* Almost full width */
-                             height: auto;         /* Auto adjust height */
-                              max-height: 90vh;     /* Prevent overflow */
-                              overflow-y: auto;     /* Scroll if too tall */
+             
+                @media (max-width: 768px) {
+                      html, body {
+                               
+                               height: 100%;   
+                              overflow-y: hidden;     /* Scroll if too tall */
                               padding: 15px;
+                              max-width: 100%;
                         }
+                        .bill-container {
+                        overflow-y: hidden;
+                        height: 80%;
+                        width: auto;
+                        }
+                        .bill-container button {
+                         width: auto;            /* full width buttons in mobile */
+                          margin: 5px 0;
+                             }
+}
 }
 
             </style>
@@ -412,3 +432,4 @@ window.onload = function () {
 
 // Run on every page load
 document.addEventListener("DOMContentLoaded", showLoginStatus);
+
