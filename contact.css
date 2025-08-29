@@ -377,5 +377,13 @@ footer {
 .mobile-nav .nav-item:hover {
   color:#04d631;
 }
+  
+html, body {
+   margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; 
+}
 } 
+
 
